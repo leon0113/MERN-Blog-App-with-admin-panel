@@ -1,12 +1,13 @@
-import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Home from './pages/Home'
+import './App.css'
+import FooterCom from './components/Footer'
+import Header from './components/Header'
 import About from './pages/About'
 import Dashboard from './pages/Dashboard'
+import Home from './pages/Home'
+import Projects from './pages/Projects'
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
-import Projects from './pages/Projects'
-import Header from './components/Header'
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/projects" element={<Projects />} />
       </Routes>
+      <FooterCom />
     </BrowserRouter>
   )
 }

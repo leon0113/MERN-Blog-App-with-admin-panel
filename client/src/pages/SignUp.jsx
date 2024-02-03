@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react"
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
@@ -32,11 +31,16 @@ function SignUp() {
             });
             const data = await res.json();
 
+            if (data.message === 'E11000 duplicate key error collection: mern-blog.users index: userName_1 dup key: { userName: "leon11" }') {
+                setLoading(false);
+                return setErrorMessage("Same name or email already in use");
+            }
             if (data.success === false) {
                 setLoading(false);
                 return setErrorMessage(data.message);
             }
             setLoading(false);
+            //navigate to singin page after successfull singup
             if (res.ok) navigate('/sign-in');
         } catch (error) {
             setLoading(false);
