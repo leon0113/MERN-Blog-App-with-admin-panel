@@ -3,7 +3,7 @@ import bcryptjs from 'bcryptjs';
 import { errorHandler } from "../utlis/error.js";
 import jwt from "jsonwebtoken";
 
-// singup
+//TODO ------------------------ singup-----------------
 export const signup = async (req, res, next) => {
     const { userName, email, password } = req.body;
 
@@ -28,7 +28,7 @@ export const signup = async (req, res, next) => {
     }
 };
 
-// ___________________________________signin____________________________
+//TODO ___________________________________signin____________________________
 export const signin = async (req, res, next) => {
     const { email, password } = req.body;
 
