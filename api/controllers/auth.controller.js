@@ -64,3 +64,31 @@ export const signin = async (req, res, next) => {
     }
 
 }
+
+
+//TODO ___________________________________Google auth response____________________________
+export const google = async (req, res, next) => {
+    const { email, name, googlePhotoUrl } = req.body;
+    try {
+        const user = await User.findOne({ email });
+        if (user) {
+            const token = jwt.sign(
+                { id: user._id },
+                process.env.JWT_SECRET
+            );
+            const { password, ...rest } = validUser._doc;
+
+            res.status(200).cookie('access_token', token, { httpOnly: true }).json(rest)
+        } else {
+            const generatePassword = Math.random().toString(36).slice(-8) + Math.random().toString(36).slice(-8);
+            const hashedPassword = bcryptjs.hashSync(generatePassword, 10);
+            const newUser = new User({
+                userName: name.toLowerCase().split(" ").join(" ") + Math.random().toString(9).slice(-4),
+                email,
+                password: hashedPassword
+            })
+        }
+    } catch (error) {
+        next(error)
+    }
+}
